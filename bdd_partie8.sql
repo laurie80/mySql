@@ -263,3 +263,20 @@ mysql> SELECT COUNT(*) AS numberFram, languages.name AS langName
 +------------+------------+
 9 rows in set (0.00 sec)
 -- Afficher les langages ayant plus de 3 frameworks.
+mysql> SELECT COUNT(*)AS numberFram, languages.name AS langName
+    -> FROM languages
+    -> INNER JOIN frameworks
+    -> ON languages.id=frameworks.languagesId
+    -> GROUP BY `frameworks`.`languagesId`
+    -> HAVING COUNT(*)<4;
++------------+----------+
+| numberFram | langName |
++------------+----------+
+|          3 | C++      |
+|          3 | Java     |
+|          3 | C#       |
+|          3 | VB       |
+|          3 | Python   |
+|          3 | Ruby     |
++------------+----------+
+6 rows in set (0.02 sec)
